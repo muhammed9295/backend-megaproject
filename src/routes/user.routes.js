@@ -36,10 +36,10 @@ router.route("/current-user").get(verifyJWT, getCurrentUser);
 router.route("/update-account-details").patch(verifyJWT, updateAccountDetails);
 router
   .route("/update-avatar")
-  .patch(verifyJWT, upload.single("/avatar"), updateUserAvatar);
+  .patch(verifyJWT, upload.single("avatar"), updateUserAvatar);
 router
   .route("/update-cover")
-  .patch(verifyJWT, upload.single("/coverImage"), updateUserCover);
+  .patch(verifyJWT, upload.single("coverImage"), updateUserCover);
 router.route("/c/:username").get(verifyJWT, getUserChannelProfile); //getting details form params
 router.route("/watch-history").get(verifyJWT, getWatchHistory);
 
