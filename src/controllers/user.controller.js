@@ -158,8 +158,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
     {
-      $set: {
-        refreshToken: undefined,
+      $unset: {
+        refreshToken: 1,
       },
     },
     { new: true }
@@ -225,6 +225,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
 const changeCurrentPassword = asyncHandler(async (req, res) => {
   const { oldPassword, newPassword } = req.body;
+  console.log(oldPassword);
 
   const user = await User.findById(req.user?._id); //When can find req.user by auth.middleware.js
   const isPasswordCorrect = await user.isPasswordCorrect(oldPassword); //isPasswordCorrect comes from user.model.js
